@@ -1,0 +1,13 @@
+---
+- name: Create a website on the webfactional
+  webfaction_site:
+    name: "{{app_name}}"
+    state: present
+    host: "{{web_server}}"
+    subdomains:
+      - "{{subdomain}}.{{domain_main}}"
+    site_apps:
+      - ["{{subdomain}}","/"]
+    https: "{{https}}"
+    login_name: "{{username}}"
+    login_password: "{{password}}"

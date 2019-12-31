@@ -1,0 +1,9 @@
+---
+- name: Create a domain on the webfaction
+  webfaction_domain:
+    name: "{{domain_main}}"
+    state: present
+    login_name: "{{username}}"
+    login_password: "{{password}}"
+    subdomains:
+      - "{{subdomain}}"

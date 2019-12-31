@@ -1,0 +1,34 @@
+---
+- name: Create application on webfactional about type php 7.2
+  webfaction_app:
+    name={{app_name}}
+    state=present
+    type=static_php72
+    login_name={{username}}
+    login_password={{password}}
+
+- name: Create Directory composer
+  file:
+    path: "/home/{{username}}/composer"
+    state: directory
+  
+- name: Download Composer
+  get_url:
+    url: https://getcomposer.org/installer
+    dest: "/home/{{username}}/composer"
+
+- name: Install Composer
+  command: "php72 installer"
+  args:
+   chdir: "/home/{{username}}/composer"
+
+- name: Change name composer.phar on composer72
+  command: "mv composer.phar composer72"
+  args:
+   chdir: "/home/{{username}}/composer"
+
+- name: Remove composer installer
+  command: "rm installer"
+  args:
+   chdir: "/home/{{username}}/composer"
+

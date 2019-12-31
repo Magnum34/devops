@@ -1,0 +1,14 @@
+---
+- name: Create Stage on the Webfaction and add Silverstripe 4
+  hosts: target1
+  
+  vars_files:
+   - vars/external_vars.yml
+  
+  roles:
+   - mysql
+   - domains
+   - php72
+   - website
+   - silverstripe4
+      

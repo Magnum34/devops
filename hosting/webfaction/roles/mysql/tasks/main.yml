@@ -1,0 +1,8 @@
+---
+- name: Create a database on the webfactional MYSQL
+  webfaction_db:
+    name: "{{database_name}}"
+    password: "{{database_password}}"
+    type: mysql
+    login_name: "{{username}}"
+    login_password: "{{password}}"

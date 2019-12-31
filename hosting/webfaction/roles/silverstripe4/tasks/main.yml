@@ -1,0 +1,15 @@
+---
+- name: Remove index.html
+  command: "rm index.html"
+  args:
+   chdir: "/home/{{username}}/webapps/{{app_name}}"
+  ignore_errors: true
+
+- name: Create empty Silverstripe 4
+  command: "/home/{{username}}/composer/composer72 create-project -s dev  qunabu/silverstripe4-installer  .  --no-interaction"
+  args:
+   chdir: "/home/{{username}}/webapps/{{app_name}}"
+  ignore_errors: true
+
+
+
