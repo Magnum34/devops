@@ -1,6 +1,6 @@
 # Webfactional
 
-## Require
+## Required
 
 * ansible
 
