@@ -3,8 +3,9 @@ username: XXX
 password: XXXX
 domain_main: XXX
 subdomain: test5
-database_password: password
-web_server: web506.webfaction.com
+database_password: XXXX
+web_server: XXXX
+# Active Https
 https: no
 
 document_root: "/public"
