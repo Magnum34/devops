@@ -1,5 +1,5 @@
 ---
-- name: Create Stage on the Webfaction and add Silverstripe 4
+- name: Create Stage on the Webfaction and add Laravel 6
   hosts: target1
   vars:
     active_symlink: true
@@ -12,5 +12,5 @@
    - php72
    - symlink
    - website
-   - silverstripe4
-      
+   - laravel
+  

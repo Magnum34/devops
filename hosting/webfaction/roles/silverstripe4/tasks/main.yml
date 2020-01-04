@@ -5,11 +5,44 @@
    chdir: "/home/{{username}}/webapps/{{app_name}}"
   ignore_errors: true
 
-- name: Create empty Silverstripe 4
-  command: "/home/{{username}}/composer/composer72 create-project -s dev  qunabu/silverstripe4-installer  .  --no-interaction"
+- name: Git init
+  command: "git init"
   args:
    chdir: "/home/{{username}}/webapps/{{app_name}}"
-  ignore_errors: true
+  ignore_errors: true 
+
+- name:  Remote git project
+  command: "git remote add origin https://github.com/Magnum34/silverstripe4-installer.git"
+  args:
+   chdir: "/home/{{username}}/webapps/{{app_name}}"
+  ignore_errors: true 
+
+- name: Download SilverStripe 4
+  command: "git pull origin master"
+  args:
+   chdir: "/home/{{username}}/webapps/{{app_name}}"
+  ignore_errors: true 
+
+- name: Remove all directory .git
+  command: "rm -rf .git"
+  args:
+   chdir: "/home/{{username}}/webapps/{{app_name}}"
+  ignore_errors: true 
+
+- name: Composer Update 
+  command: "php72 /home/{{username}}/composer/composer72 update"
+  args:
+   chdir: "/home/{{username}}/webapps/{{app_name}}"
+
+- name: Copy .env config file
+  template: src=.env dest=/home/{{username}}/webapps/{{app_name}} force=no
+
+- name: "Build SilverStripe 4"
+  command: "php72 vendor/silverstripe/framework/cli-script.php dev/build?flush=all"
+  args:
+   chdir: "/home/{{username}}/webapps/{{app_name}}"
+  ignore_errors: true 
+
 
 
 

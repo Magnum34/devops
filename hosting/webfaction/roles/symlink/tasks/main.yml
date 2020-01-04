@@ -1,0 +1,10 @@
+---
+- name: Create application on webfactional Symlink php72
+  webfaction_app:
+    name={{app_name}}_symlink
+    state=present
+    type=symlink72
+    extra_info=/home/{{username}}/webapps/{{app_name}}/public
+    login_name={{username}}
+    login_password={{password}}
+

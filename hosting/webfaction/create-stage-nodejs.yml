@@ -1,0 +1,13 @@
+---
+- name: Create Stage on the Webfaction and add NodeJS
+  hosts: target1
+  vars:
+    active_symlink: false
+  vars_files:
+   - vars/external_vars.yml
+  
+  roles:
+   - mysql
+   - domains
+
+  

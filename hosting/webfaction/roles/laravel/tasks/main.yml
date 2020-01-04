@@ -1,0 +1,25 @@
+---
+- name: Remove index.html
+  command: "rm index.html"
+  args:
+   chdir: "/home/{{username}}/webapps/{{app_name}}"
+  ignore_errors: true
+
+- name: Composer Create Project on the Laravel 
+  command: "php72 /home/{{username}}/composer/composer72 create-project --prefer-dist laravel/laravel ."
+  args:
+   chdir: "/home/{{username}}/webapps/{{app_name}}"
+  ignore_errors: true
+
+- name: Copy .env config file
+  template: src=.env dest=/home/{{username}}/webapps/{{app_name}} force=yes
+
+- name: Key Generate
+  command: php72 artisan key:generate
+  args:
+   chdir: "/home/{{username}}/webapps/{{app_name}}"
+
+- name: Config Clear
+  command: php72 artisan config:clear
+  args:
+   chdir: "/home/{{username}}/webapps/{{app_name}}"

@@ -1,8 +1,8 @@
 ---
-- name: Create Stage on the Webfaction and add Silverstripe 4
+- name: Create Stage on the Webfaction and add wordpress
   hosts: target1
   vars:
-    active_symlink: true
+    active_symlink: false
   vars_files:
    - vars/external_vars.yml
   
@@ -10,7 +10,5 @@
    - mysql
    - domains
    - php72
-   - symlink
    - website
-   - silverstripe4
-      
+   - wordpress

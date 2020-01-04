@@ -1,0 +1,8 @@
+---
+- name: install common global python packages
+  shell: ~/bin/pip3.4 install --install-option="--user"  {{ item.name }}
+  with_items:
+    - { name: mercurial }
+    - { name: ipython }
+    - { name: psycopg2 }
+    - { name: python-memcached }

@@ -1,0 +1,2 @@
+[webfaction-server]
+target1 ansible_host=XXXX ansible_user=XXX ansible_password=XXXX

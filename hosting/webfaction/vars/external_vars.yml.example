@@ -1,0 +1,12 @@
+---
+username: XXX
+password: XXXX
+domain_main: XXX
+subdomain: test5
+database_password: password
+web_server: web506.webfaction.com
+https: no
+
+document_root: "/public"
+app_name: "{{subdomain}}"
+database_name: "{{subdomain}}_db"

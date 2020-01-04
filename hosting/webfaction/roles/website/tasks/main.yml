@@ -11,3 +11,17 @@
     https: "{{https}}"
     login_name: "{{username}}"
     login_password: "{{password}}"
+  when: not active_symlink
+- name: Create a website on the webfactional Symlink
+  webfaction_site:
+    name: "{{app_name}}"
+    state: present
+    host: "{{web_server}}"
+    subdomains:
+      - "{{subdomain}}.{{domain_main}}"
+    site_apps:
+      - ["{{subdomain}}_symlink","/"]
+    https: "{{https}}"
+    login_name: "{{username}}"
+    login_password: "{{password}}"
+  when: active_symlink

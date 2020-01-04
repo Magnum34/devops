@@ -1,0 +1,10 @@
+---
+- name: Create Stage on the Webfaction and add Django
+  hosts: target1
+  vars:
+    active_symlink: true
+  vars_files:
+   - vars/external_vars.yml
+  
+  roles:
+   - virtualenv

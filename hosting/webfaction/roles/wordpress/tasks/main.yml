@@ -1,0 +1,62 @@
+---
+- name: Remove index.html
+  command: "rm index.html"
+  args:
+   chdir: "/home/{{username}}/webapps/{{app_name}}"
+  ignore_errors: true
+
+- name: Git init
+  command: "git init"
+  args:
+   chdir: "/home/{{username}}/webapps/{{app_name}}"
+  ignore_errors: true 
+
+- name:  Remote git project
+  command: "git remote add origin https://github.com/Magnum34/wordpress-boilerplate.git"
+  args:
+   chdir: "/home/{{username}}/webapps/{{app_name}}"
+  ignore_errors: true 
+
+- name: Download Wordpress boilerplate
+  command: "git pull origin master"
+  args:
+   chdir: "/home/{{username}}/webapps/{{app_name}}"
+  ignore_errors: true 
+
+- name: Remove all directory .git
+  command: "rm -rf .git"
+  args:
+   chdir: "/home/{{username}}/webapps/{{app_name}}"
+  ignore_errors: true 
+
+- name: Download last version wordpress
+  get_url:
+    url: http://wordpress.org/latest.tar.gz
+    dest: "/home/{{username}}/webapps/{{app_name}}/last.tar.gz"
+    mode: a+x
+
+- name: Extract last.tar.gz
+  unarchive:
+    remote_src: yes
+    src: "/home/{{username}}/webapps/{{app_name}}/last.tar.gz"
+    dest: "/home/{{username}}/webapps/{{app_name}}"
+
+- name: Remove last.tar.gz
+  command: "rm last.tar.gz"
+  args:
+   chdir: "/home/{{username}}/webapps/{{app_name}}"
+  ignore_errors: true
+
+- name: Fetch random salts for WordPress config
+  local_action: command curl https://api.wordpress.org/secret-key/1.1/salt/
+  register: "wp_salt"
+
+- name: Copy WordPress config file
+  template: src=wp-config.php dest=/home/{{username}}/webapps/{{app_name}} force=no
+
+- name: Remove file wp-config-sample.php
+  command: rm wp-config-sample.php
+  args:
+   chdir: "/home/{{username}}/webapps/{{app_name}}"
+  ignore_errors: true
+
